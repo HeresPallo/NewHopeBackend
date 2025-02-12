@@ -17,11 +17,14 @@ const app = express();
 const port = 5001;
 
 
-app.use(cors({
-  origin: "*", // Change to your frontend URL for security, e.g., "http://localhost:5173"
-  methods: "GET,POST,PATCH,PUT,DELETE,OPTIONS", // ✅ Ensure PATCH is included
-  allowedHeaders: "Content-Type,Authorization"
-}));
+const corsOptions = {
+  origin: 'https://new-hope-e46616a5d911.herokuapp.com/',  // Replace with your Vercel URL
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],  // Define allowed HTTP methods
+  allowedHeaders: ['Content-Type', 'Authorization'], // Define allowed headers
+};
+
+// Use the cors middleware
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(cookieParser());
 app.use('/uploads', express.static('uploads'));
